@@ -1,1 +1,18 @@
-<p>villain works!</p>
+<p
+    appColors
+    [ngClass]="{ 'inst-style':villain.instructor }"
+>
+    Name: {{ villain.name }} <br>
+    Added on: <span [textContent]="villain.added_on | date"></span> <br>
+    Instructor: <span *ngIf="villain.instructor; then ins else notins"></span> <br>
+    <ng-template #ins>&check;</ng-template>
+    <ng-template #notins><b>X</b></ng-template>
+    <button 
+        class="btn btn-outline-danger"
+        (click)="onDelete($event,villain.name)"
+    >DELETE</button> <br>
+    <button 
+        class="btn btn-outline-primary"
+        (click)="onEdit()"
+    >EDIT</button>
+</p>
