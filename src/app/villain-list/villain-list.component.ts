@@ -14,7 +14,7 @@ export class VillainListComponent {
     this.villains = []
   }
 
-  onPersonDelete(evt:any) {
+  onVillainDelete(evt:any) {
     let delete_villain = evt['delete_villain'] 
     // this.villain = this.villain.filter((p) => p.name != delete_villain)
     this.villains = this.vs.delete(delete_villain)

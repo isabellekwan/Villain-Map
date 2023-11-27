@@ -10,7 +10,7 @@ const appRoutes:Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'villain', component: VillainListComponent },
   { path: 'villain/report', component: ReportComponent },
-  { path: 'villain/:name', component: VillainEditComponent }
+  { path: 'villain/:name/:id', component: VillainEditComponent }
 ]
 
 @NgModule({

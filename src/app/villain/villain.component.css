@@ -13,3 +13,9 @@ button {
     border: 2px solid orange;
     box-shadow: 5px 10px 10px grey;
 }
+
+.btn {
+    margin-top: 1vw;
+    background-color: orangered;
+    border: 0px;
+}

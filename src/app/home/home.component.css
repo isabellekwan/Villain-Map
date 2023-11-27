@@ -6,3 +6,9 @@ h1 {
     -webkit-text-stroke: 0.225vw black;
     text-align: center;
 }
+
+.btn {
+    margin-top: 1vw;
+    background-color: orangered;
+    border: 0px;
+}

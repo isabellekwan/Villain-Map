@@ -1,4 +1,8 @@
-<a class = 'btn btn-primary' routerLink="/villain/report">Report a Nuisance!</a>
+<app-villain
+    *ngFor="let v of villains"
+    [villain]="v"
+    (delete)="onVillainDelete($event)"
+></app-villain>
 
 <br>
 
@@ -7,8 +11,3 @@
     Number of people: {{ villains | search:query | countPeople }}
 </p> -->
 
-<!-- <app-person
-    *ngFor="let p of people | search:query"
-    [person]="p"
-    (delete)="onPersonDelete($event)"
-></app-person> -->
