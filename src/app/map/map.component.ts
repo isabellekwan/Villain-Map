@@ -55,4 +55,10 @@ export class MapComponent implements OnInit {
 
   }
 
+  showClick() {
+    this.map.on ('click', (e) => {
+      alert("Lat,Lon: " + e.latlng.lat + ", " + e.latlng.lng)
+    })
+  }
+
 }

@@ -12,3 +12,10 @@ legend {
     -webkit-text-stroke: 0.15vw black;
     text-align: left;
 }
+
+label {
+    font-size: 1.6vw;
+    font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    color: white;
+    -webkit-text-stroke: .075vw black;
+}

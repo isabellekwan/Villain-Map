@@ -36,11 +36,11 @@
             id="imageUrl"
             placeholder="Enter image URL (optional)"
             >
-            <!-- <label for="locationSelect">Select or Add Location:</label>
+            <label for="locationSelect">Select or Add Location:</label>
             <select 
             name="locationSelect"
             id="locationSelect"
-            (change)="onLocationSelected($event.target.value)"
+            (change)="onLocationSelected($event)"
             >
             <option value="" disabled selected>Select a location or add a new one</option>
             
@@ -53,24 +53,24 @@
 
             <div *ngIf="isNewLocationSelected">
             
-            <label for="newLocationName">New Location Name:</label>
+            <label for="newLocationName">New Location Name: </label>
             <input 
                 type="text"
                 name="newLocationName"
                 id="newLocationName"
                 placeholder="Enter new location name"
-            >
+            ><br>
 
-            <label for="newLatitude">New Latitude:</label>
+            <label for="newLatitude">New Latitude: </label>
             <input 
                 type="number"
                 step="any"
                 name="newLatitude"
                 id="newLatitude"
                 placeholder="Enter new latitude"
-            >
+            ><br>
 
-            <label for="newLongitude">New Longitude:</label>
+            <label for="newLongitude">New Longitude: </label>
             <input 
                 type="number"
                 step="any"
@@ -78,7 +78,7 @@
                 id="newLongitude"
                 placeholder="Enter new longitude"
             >
-            </div> -->
+            </div>
             <label for="extraDetails">Extra Details:</label>
             <textarea 
             name="extraDetails"

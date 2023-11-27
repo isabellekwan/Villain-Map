@@ -27,16 +27,14 @@ export class ReportComponent {
   onSubmit(newVillain:any) {
     //console.log(newVillain)
     this.vs.add(newVillain)
-    this.router.navigate(["/"])
+    this.router.navigate(["/home"])
   }
 
   previousLocations: any[] = []; // Array of previous locations
   isNewLocationSelected: boolean = false;
 
-  onLocationSelected(event: Event) {
-    const target = event.target as HTMLSelectElement;
-    if (target instanceof HTMLSelectElement) {
-      const selectedValue = target.value;
+  onLocationSelected(value:any) {
+      const selectedValue = value.target.value;
   
       if (selectedValue === 'new') {
         this.isNewLocationSelected = true;
@@ -50,7 +48,7 @@ export class ReportComponent {
       this.resetNewLocationFields();
     }
   }
-}
+
 
   resetNewLocationFields() {
     // Reset the fields for new location entry
@@ -58,4 +56,5 @@ export class ReportComponent {
     // Reset the values of new location fields to empty or default
     // ...
   }
+
 }
