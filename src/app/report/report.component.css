@@ -1,0 +1,14 @@
+body {
+    padding-left: 20vw;
+    padding-right: 20vw;
+    padding-top: 5vw;
+}
+
+legend {
+    font-family: 'BadaFont', sans-serif; 
+    font-size: 4vw;
+    color: white;
+    letter-spacing:0.15vw;
+    -webkit-text-stroke: 0.15vw black;
+    text-align: left;
+}

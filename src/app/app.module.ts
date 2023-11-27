@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { RouterModule, Routes } from '@angular/router';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -11,6 +12,7 @@ import { VillainListComponent } from './villain-list/villain-list.component';
 
 import { VillainService } from './villain.service';
 import { VillainEditComponent } from './villain-edit/villain-edit.component';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
   declarations: [
@@ -19,13 +21,18 @@ import { VillainEditComponent } from './villain-edit/villain-edit.component';
     ReportComponent,
     VillainComponent,
     VillainListComponent,
-    VillainEditComponent
+    VillainEditComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    RouterModule.forRoot([
+      { path: '', pathMatch: 'full', redirectTo: 'home' },
+      { path: 'home', component: HomeComponent },
+    ])
   ],
   providers: [VillainService],
   bootstrap: [AppComponent]

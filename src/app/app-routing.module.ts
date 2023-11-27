@@ -4,8 +4,10 @@ import { RouterModule, Routes } from '@angular/router';
 import { VillainListComponent } from './villain-list/villain-list.component';
 import { ReportComponent } from './report/report.component';
 import { VillainEditComponent } from './villain-edit/villain-edit.component';
+import { HomeComponent } from './home/home.component';
 
 const appRoutes:Routes = [
+  { path: 'home', component: HomeComponent },
   { path: 'villain', component: VillainListComponent },
   { path: 'villain/report', component: ReportComponent },
   { path: 'villain/:name', component: VillainEditComponent }

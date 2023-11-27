@@ -29,4 +29,33 @@ export class ReportComponent {
     this.vs.add(newVillain)
     this.router.navigate(["/"])
   }
+
+  previousLocations: any[] = []; // Array of previous locations
+  isNewLocationSelected: boolean = false;
+
+  onLocationSelected(event: Event) {
+    const target = event.target as HTMLSelectElement;
+    if (target instanceof HTMLSelectElement) {
+      const selectedValue = target.value;
+  
+      if (selectedValue === 'new') {
+        this.isNewLocationSelected = true;
+      } else {
+        // Handle selection of a previous location
+        const selectedLocation = this.previousLocations.find(location => location.id === selectedValue);
+        if (selectedLocation) {
+        //add to nuisance count
+      }
+      // Reset the new location fields if previously shown
+      this.resetNewLocationFields();
+    }
+  }
+}
+
+  resetNewLocationFields() {
+    // Reset the fields for new location entry
+    this.isNewLocationSelected = false;
+    // Reset the values of new location fields to empty or default
+    // ...
+  }
 }
