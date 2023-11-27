@@ -12,39 +12,12 @@ export class VillainListComponent {
   constructor(private vs:VillainService){
     this.query = ''
     this.villains = []
-    // this.villains = [
-    //   {
-    //     name: 'john',
-    //     instructor: false,
-    //     added_on: new Date().getTime()
-    //   },
-    //   {
-    //     name: 'bobby',
-    //     instructor: false,
-    //     added_on: new Date().getTime()
-    //   },
-    //   {
-    //     name: 'jenny',
-    //     instructor: true,
-    //     added_on: new Date().getTime()
-    //   },
-    //   {
-    //     name: 'jane',
-    //     instructor: true,
-    //     added_on: new Date().getTime()
-    //   },
-    //   {
-    //     name: 'steve',
-    //     instructor: true,
-    //     added_on: new Date().getTime()
-    //   }
-    // ]
   }
 
   onPersonDelete(evt:any) {
-    let delete_person = evt['delete_person'] 
-    // this.people = this.people.filter((p) => p.name != delete_person)
-    this.villains = this.vs.delete(delete_person)
+    let delete_villain = evt['delete_villain'] 
+    // this.villain = this.villain.filter((p) => p.name != delete_villain)
+    this.villains = this.vs.delete(delete_villain)
   }
 
   ngOnInit(): void {

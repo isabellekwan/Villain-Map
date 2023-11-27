@@ -1,0 +1,8 @@
+h1 {
+    font-family: 'BadaFont', sans-serif; 
+    font-size: 7vw;
+    letter-spacing: 0.35vw;
+    color: white;
+    -webkit-text-stroke: 0.225vw black;
+    text-align: center;
+}

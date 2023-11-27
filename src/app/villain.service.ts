@@ -7,14 +7,7 @@ export class VillainService {
   villains: any[] // change to villain class
   constructor() {
     // call the data service for the people
-    
-    this.villains = [
-        // {
-        //   name: 'steve',
-        //   instructor: true,
-        //   added_on: new Date().getTime()
-        // }
-    ]
+    this.villains = []
    }
 
    get() {

@@ -1,4 +1,11 @@
 /* You can add global styles to this file, and also import other style files */
+
+@font-face {
+    font-family: 'BadaFont';
+    src: url('./assets/fonts/BADABB__.TTF') format('truetype');
+    /*Badaboom BB by Blambot on daFont.com*/
+  }
+
 body {
     background-image: url('./assets/4864288.jpg');
     background-size: cover;

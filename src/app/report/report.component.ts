@@ -24,9 +24,9 @@ export class ReportComponent {
     this.form = new FormGroup(formControls)
   }
 
-  onSubmit(newPerson:any) {
-    //console.log(newPerson)
-    this.vs.add(newPerson)
-    this.router.navigate(["/villains"])
+  onSubmit(newVillain:any) {
+    //console.log(newVillain)
+    this.vs.add(newVillain)
+    this.router.navigate(["/"])
   }
 }
