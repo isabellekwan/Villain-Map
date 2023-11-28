@@ -1,17 +1,16 @@
-<p
-    [ngClass]="{ 'inst-style':villain.instructor }"
->
-    Baddie's Name: {{ villain.name }} <br>
-    Location: {{ villain.locationname }}
-    Reported By: {{villain.reportname}} ( {{villain.reportnumber}} )
-    Added on: <span [textContent]="villain.added_on | date"></span> <br>
-    Status: <span *ngIf="villain.instructor; then ins else notins"></span> <br>
-    <ng-template #ins>&check;</ng-template>
-    <ng-template #notins><b>X</b></ng-template>
-    <button 
-        class="btn btn-outline-danger"
-        (click)="onDelete($event,villain.name)"
-    >Change</button>
-    Extra Info: {{ villain.extraDetails }}
-</p>
-<a class = 'btn btn-primary' routerLink="/home">Back</a>
+<div>
+    <img *ngIf="villain?.imageUrl" [src]="villain.imageUrl" alt="Villain Image">
+    <p
+        [ngClass]="{ 'inst-style':villain.instructor }"
+    >
+        Baddie's Name: {{ villain.name }} <br>
+        Location: {{ villain.location }}
+        Reported By: {{villain.reportname}} ( {{villain.reportnumber}} )
+        Added on: <span [textContent]="villain.added_on | date"></span> <br>
+        Status: <span *ngIf="villain.instructor; then ins else notins"></span> <br>
+        <ng-template #ins>&check;</ng-template>
+        <ng-template #notins><b>X</b></ng-template>
+        Extra Info: {{ villain.extraDetails }}
+        <a class = 'btn btn-primary' routerLink="/home">Back</a>
+    </p>
+</div>

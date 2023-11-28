@@ -12,7 +12,7 @@
                 type="text"
                 name="name"
                 placeholder="Enter your name"
-                formControlName="name"
+                formControlName="reportname"
             >
             <label for="phone">Reporter's Phone Number:</label>
             <input 
@@ -21,6 +21,7 @@
                 id="phone"
                 placeholder="Eg. 111-222-3333"
                 pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" 
+                formControlName="reportnumber"
             >
             <label for="name">Villain's Name:</label>
             <input 
@@ -35,6 +36,7 @@
             name="imageUrl"
             id="imageUrl"
             placeholder="Enter image URL (optional)"
+            formControlName="imageUrl"
             >
             <label for="locationSelect">Select or Add Location:</label>
             <select 
@@ -64,7 +66,6 @@
             <label for="newLatitude">New Latitude: </label>
             <input 
                 type="number"
-                step="any"
                 name="newLatitude"
                 id="newLatitude"
                 placeholder="Enter new latitude"
@@ -73,7 +74,6 @@
             <label for="newLongitude">New Longitude: </label>
             <input 
                 type="number"
-                step="any"
                 name="newLongitude"
                 id="newLongitude"
                 placeholder="Enter new longitude"
@@ -85,6 +85,7 @@
             id="extraDetails"
             rows="4"
             placeholder="Enter extra details"
+            formControlName="extraDetails"
             ></textarea>
             <button 
                 class="btn btn-outline-primary"

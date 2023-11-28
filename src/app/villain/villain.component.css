@@ -19,3 +19,8 @@ button {
     background-color: orangered;
     border: 0px;
 }
+
+img {
+    max-height: 5vw;
+    max-width: 5vw;
+}

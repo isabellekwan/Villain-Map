@@ -11,15 +11,23 @@ import { Router } from '@angular/router';
 
 export class ReportComponent {
   form: FormGroup
+
   constructor(private vs: VillainService, private router: Router){
     let formControls = {
       name: new FormControl('',[
-        Validators.required,
-        Validators.minLength(4)
-        
+        Validators.required,    
       ]),
-      instructor: new FormControl(),
-      age: new FormControl()
+      reportname: new FormControl('',[
+        Validators.required,    
+      ]),
+      reportnumber: new FormControl('',[
+        Validators.required,    
+      ]),
+      imageUrl: new FormControl('',[
+        Validators.required,    
+      ]),
+      location: new FormControl(),// make required when it works
+      extraDetails: new FormControl(),
     }
     this.form = new FormGroup(formControls)
   }

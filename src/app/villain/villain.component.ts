@@ -11,12 +11,8 @@ export class VillainComponent {
   @Output() delete = new EventEmitter()
 
   constructor(private router: Router){
-    // this.villain = {
-    //   name: 'bobby',
-    //   instructor: true,
-    //   added_on: new Date().getTime()
-    // }
   }
+  
   onDelete(evt:any,vil_to_be_deleted:string) {
     evt['delete_villain'] = vil_to_be_deleted
     //console.log(evt)
