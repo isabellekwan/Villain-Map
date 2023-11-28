@@ -1,10 +1,15 @@
-p {
+div {
     border: 1px solid black;
     border-radius: 0.5em;
-    width: 80vw;
-    padding:1em;
-    margin:0.5em;
+    width: 30vw;
+    padding:2vw;
+    margin:auto;
     user-select:none;
+    background-color: white;
+}
+
+div.img {
+    justify-content: center;
 }
 button {
     margin-top:0.5em;
@@ -21,6 +26,7 @@ button {
 }
 
 img {
-    max-height: 5vw;
-    max-width: 5vw;
+    margin-bottom: 1vw;
+    max-height: 20vw;
+    max-width: 20vw;
 }

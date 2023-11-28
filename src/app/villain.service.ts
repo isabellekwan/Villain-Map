@@ -6,7 +6,6 @@ import { Injectable } from '@angular/core';
 export class VillainService {
   villains: any[] // change to villain class
   constructor() {
-    // call the data service for the people
     this.villains = []
    }
 

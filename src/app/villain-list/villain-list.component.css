@@ -3,3 +3,10 @@
     background-color: orangered;
     border: 0px;
 }
+
+table {
+    margin: 2vw;
+    width: 60vw;
+    padding: 1vw;
+    border: .4vw solid black;
+}

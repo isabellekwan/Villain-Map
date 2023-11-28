@@ -3,9 +3,26 @@
     [villain]="v"
     (delete)="onVillainDelete($event)"
 ></app-villain>
-<!-- <button 
-    class="btn btn-outline-danger"
-    (click)="onDelete($event,villain.name)"
->Change</button> -->
-<br>
+<table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">Location</th>
+        <th scope="col">Villain's Name</th>
+        <th scope="col">Time Reported</th>
+        <th scope="col"></th>
+        <th scope="col"></th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let v of villains">
+        <td> {{ v.location }}</td>
+        <td> {{ v.name }}</td>
+        <td> {{ v.time }}</td>
+        <td> {{ v.status }}</td>
+        <td>insert more info</td>
+        <td>insert delete</td>
+      </tr>
+    </tbody>
+  </table>
 

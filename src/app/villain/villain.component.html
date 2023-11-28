@@ -1,16 +1,14 @@
 <div>
     <img *ngIf="villain?.imageUrl" [src]="villain.imageUrl" alt="Villain Image">
-    <p
-        [ngClass]="{ 'inst-style':villain.instructor }"
-    >
+    <p>
         Baddie's Name: {{ villain.name }} <br>
-        Location: {{ villain.location }}
-        Reported By: {{villain.reportname}} ( {{villain.reportnumber}} )
+        Location: {{ villain.location }} <br>
+        Reported By: {{villain.reportname}} ( {{villain.reportnumber}} ) <br>
         Added on: <span [textContent]="villain.added_on | date"></span> <br>
         Status: <span *ngIf="villain.instructor; then ins else notins"></span> <br>
         <ng-template #ins>&check;</ng-template>
         <ng-template #notins><b>X</b></ng-template>
         Extra Info: {{ villain.extraDetails }}
-        <a class = 'btn btn-primary' routerLink="/home">Back</a>
     </p>
+    <a class = 'btn btn-primary' routerLink="/home">Back</a>
 </div>

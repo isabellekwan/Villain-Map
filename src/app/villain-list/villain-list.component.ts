@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { VillainService } from '../villain.service';
+import { Villain } from '../models/villain.model';
 
 @Component({
   selector: 'app-villain-list',
@@ -7,7 +8,7 @@ import { VillainService } from '../villain.service';
   styleUrls: ['./villain-list.component.css']
 })
 export class VillainListComponent {
-  villains:any[]
+  villains: Villain[]
   query: string
   constructor(private vs:VillainService){
     this.query = ''
@@ -22,5 +23,6 @@ export class VillainListComponent {
 
   ngOnInit(): void {
       this.villains = this.vs.get()
+      console.log(this.villains)
   }
 }

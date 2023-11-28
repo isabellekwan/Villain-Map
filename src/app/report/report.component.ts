@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { VillainService } from '../villain.service';
 import { Router } from '@angular/router';
+import { Villain } from "../models/villain.model"
 
 @Component({
   selector: 'app-report',
@@ -32,9 +33,12 @@ export class ReportComponent {
     this.form = new FormGroup(formControls)
   }
 
-  onSubmit(newVillain:any) {
+  onSubmit(form: any) {
+    //var newVillain = new Villain();
+
     //console.log(newVillain)
-    this.vs.add(newVillain)
+    //this.vs.add(newVillain)
+    // send data to server storage
     this.router.navigate(["/home"])
   }
 
