@@ -15,13 +15,13 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let v of villains">
+      <tr *ngFor="let v of villains" [class.closed]="v.status === 'closed'">
         <td> {{ v.location }}</td>
         <td> {{ v.name }}</td>
         <td> {{ v.time }}</td>
-        <td> {{ v.status }}</td>
-        <td>insert more info</td>
-        <td>insert delete</td>
+        <td> {{ v.status === 'closed' ? 'Closed' : 'Open' }}</td>
+        <td><a class="btn"[routerLink]="['/villain', v.id]">More Info</a></td>
+        <td><button class="btn" (click)="onVillainDelete(v.id.toString())">Delete</button></td>
       </tr>
     </tbody>
   </table>

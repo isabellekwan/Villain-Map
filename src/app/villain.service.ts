@@ -1,15 +1,16 @@
 import { Injectable } from '@angular/core';
+import { Villain } from './models/villain.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class VillainService {
-  villains: any[] // change to villain class
+  villains: Villain[]
   constructor() {
     this.villains = []
    }
 
-   get() {
+   get(): Villain[] {
     return this.villains
    }
 
@@ -21,7 +22,7 @@ export class VillainService {
    }
 
    delete(del_villain:string){
-    this.villains = this.villains.filter((p) => p.name != del_villain)
+    this.villains = this.villains.filter(v => v.id.toString() !== del_villain);
     //update villain-list on storage
     return this.villains
    }

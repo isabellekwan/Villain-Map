@@ -10,3 +10,7 @@ table {
     padding: 1vw;
     border: .4vw solid black;
 }
+
+.closed {
+    background-color: #a9a9a9;
+  }

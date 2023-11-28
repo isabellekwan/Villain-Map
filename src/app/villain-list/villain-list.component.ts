@@ -10,15 +10,15 @@ import { Villain } from '../models/villain.model';
 export class VillainListComponent {
   villains: Villain[]
   query: string
+
   constructor(private vs:VillainService){
     this.query = ''
     this.villains = []
   }
 
-  onVillainDelete(evt:any) {
-    let delete_villain = evt['delete_villain'] 
-    // this.villain = this.villain.filter((p) => p.name != delete_villain)
-    this.villains = this.vs.delete(delete_villain)
+  onVillainDelete(villainId: string) {
+      this.vs.delete(villainId);
+      this.villains = this.vs.get(); // Update villains after deletion
   }
 
   ngOnInit(): void {
