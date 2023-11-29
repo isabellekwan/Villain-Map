@@ -46,7 +46,7 @@
             >
             <option value="" disabled selected>Select a location or add a new one</option>
             
-            <option *ngFor="let location of previousLocations" [value]="location.id">
+            <option *ngFor="let location of previousLocations" [value]="location.name">
                 {{ location.name }}
             </option>
             

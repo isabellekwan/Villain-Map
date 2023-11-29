@@ -4,6 +4,7 @@ import { Villain } from './models/villain.model';
 @Injectable({
   providedIn: 'root'
 })
+
 export class VillainService {
   villains: Villain[]
   constructor() {
@@ -14,9 +15,8 @@ export class VillainService {
     return this.villains
    }
 
-   add(newVillain:any){
-    newVillain.added_on = (new Date()).getTime()
-    this.villains.push(newVillain)
+   add(newVillain: Villain){
+    this.villains.push(newVillain);
     //update villain-list on storage
     console.log(this.villains)
    }

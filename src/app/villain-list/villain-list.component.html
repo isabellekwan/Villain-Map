@@ -1,7 +1,7 @@
 <app-villain
     *ngFor="let v of villains"
     [villain]="v"
-    (delete)="onVillainDelete($event)"
+    (delete)="deleteVillain($event)"
 ></app-villain>
 <table class="table table-striped">
     <thead>
@@ -18,10 +18,10 @@
       <tr *ngFor="let v of villains" [class.closed]="v.status === 'closed'">
         <td> {{ v.location }}</td>
         <td> {{ v.name }}</td>
-        <td> {{ v.time }}</td>
+        <td> {{ v.time | date: 'shortTime'}}</td>
         <td> {{ v.status === 'closed' ? 'Closed' : 'Open' }}</td>
         <td><a class="btn"[routerLink]="['/villain', v.id]">More Info</a></td>
-        <td><button class="btn" (click)="onVillainDelete(v.id.toString())">Delete</button></td>
+        <td><button class="btn" (click)="deleteVillain(v.id.toString())">Delete</button></td>
       </tr>
     </tbody>
   </table>

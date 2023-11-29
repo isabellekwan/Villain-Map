@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule, Routes } from '@angular/router';
 import { VillainListComponent } from './villain-list/villain-list.component';
 import { ReportComponent } from './report/report.component';
@@ -18,6 +19,7 @@ const appRoutes:Routes = [
   declarations: [],
   imports: [
     CommonModule,
+    BrowserModule,
     RouterModule.forRoot(appRoutes)
   ],
   exports: [RouterModule]

@@ -1,8 +1,10 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { VillainService } from '../villain.service';
+import { StorageService } from '../storage.service';
 import { Router } from '@angular/router';
-import { Villain } from "../models/villain.model"
+import { Villain } from "../models/villain.model";
+import { Location } from "../models/location.model";
 
 @Component({
   selector: 'app-report',
@@ -13,7 +15,12 @@ import { Villain } from "../models/villain.model"
 export class ReportComponent {
   form: FormGroup
 
-  constructor(private vs: VillainService, private router: Router){
+  previousLocations: Location[];
+  isNewLocationSelected: boolean = false;
+
+  constructor(private vs: VillainService, private ss: StorageService, private router: Router){
+    this.previousLocations = [];
+    
     let formControls = {
       name: new FormControl('',[
         Validators.required,    
@@ -24,9 +31,7 @@ export class ReportComponent {
       reportnumber: new FormControl('',[
         Validators.required,    
       ]),
-      imageUrl: new FormControl('',[
-        Validators.required,    
-      ]),
+      imageUrl: new FormControl(),
       location: new FormControl(),// make required when it works
       extraDetails: new FormControl(),
     }
@@ -34,25 +39,38 @@ export class ReportComponent {
   }
 
   onSubmit(form: any) {
-    //var newVillain = new Villain();
+    if (this.form.valid) {
+      const formData = this.form.value;
+  
+      const newVillain: Villain = {
+        id: Villain.num,
+        name: formData.name,
+        reportName: formData.reportname,
+        reportNumber: formData.reportnumber,
+        location: formData.location,
+        time: new Date(),
+        imageUrl: formData.imageUrl, //image not found picture
+        extraDetails: formData.extraDetails,
+        status: 'open'
+      };
+  
+      this.vs.add(newVillain); 
 
-    //console.log(newVillain)
-    //this.vs.add(newVillain)
-    // send data to server storage
-    this.router.navigate(["/home"])
+  
+      this.router.navigate(['/home']); // Navigate to home after submission
   }
-
-  previousLocations: any[] = []; // Array of previous locations
-  isNewLocationSelected: boolean = false;
+}
 
   onLocationSelected(value:any) {
       const selectedValue = value.target.value;
   
       if (selectedValue === 'new') {
         this.isNewLocationSelected = true;
+        // make new location
+
       } else {
         // Handle selection of a previous location
-        const selectedLocation = this.previousLocations.find(location => location.id === selectedValue);
+        const selectedLocation = this.previousLocations.find(location => location.name === selectedValue);
         if (selectedLocation) {
         //add to nuisance count
       }
@@ -60,7 +78,6 @@ export class ReportComponent {
       this.resetNewLocationFields();
     }
   }
-
 
   resetNewLocationFields() {
     // Reset the fields for new location entry
