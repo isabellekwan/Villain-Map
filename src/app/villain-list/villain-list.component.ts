@@ -15,23 +15,23 @@ export class VillainListComponent implements OnInit{
     this.villains = []
   }
 
-  ngOnInit(): void {
-      console.log(this.getVillains())
-      this.getVillains();
-  }
-
   getVillains(): void {
     this.storageService.getVillains()
       .subscribe((villains: Villain[]) => this.villains = villains);
   }
 
-  addVillain(newVillain: Villain): void {
-    this.villainService.add(newVillain);
-    this.storageService.putVillains(this.villainService.get())
-      .subscribe((response) => {
-        console.log('Villain added and server updated:', response);
-      });
+  ngOnInit(): void {
+      console.log(this.getVillains())
+      this.getVillains();
   }
+
+  // addVillain(newVillain: Villain): void {
+  //   this.villainService.add(newVillain);
+  //   this.storageService.putVillains(this.villainService.get())
+  //     .subscribe((response) => {
+  //       console.log('Villain added and server updated:', response);
+  //     });
+  // }
 
   deleteVillain(villainId: string) {
     this.villainService.delete(villainId);
