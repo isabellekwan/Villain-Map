@@ -55,7 +55,7 @@ export class ReportComponent {
       };
   
       this.vs.add(newVillain); 
-
+      this.ss.putVillains(this.vs.get())
   
       this.router.navigate(['/home']); // Navigate to home after submission
   }

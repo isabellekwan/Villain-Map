@@ -9,23 +9,37 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class StorageService {
-  private apiUrl = "https://272.selfip.net/accounts/rbuMgJ2mTt/manage/h7EDf3FwiT5XucZ9r7UEZcT2lms6CP/collections/NCT/documents/";
+  private apiUrl = "https://272.selfip.net//apps/rbuMgJ2mTt/collections/NCT/documents/";
 
   constructor(private http: HttpClient) {}
 
-  getVillains(): Observable<Villain[]> {
-    return this.http.get<Villain[]>(`${this.apiUrl}villains`);
+  getVillains(): Observable<any> {
+    const villains = this.http.get<Object>(`${this.apiUrl}villains/`);
+    return villains;
   }
 
-  getLocations(): Observable<Location[]> {
-    return this.http.get<Location[]>(`${this.apiUrl}locations`);
+  getLocations(): Observable<any> {
+    const locations : Observable<Object> = this.http.get<Object>(`${this.apiUrl}locations/`);
+    return locations;
   }
 
-  putVillains(villainData: Villain[]): Observable<Villain[]> {
-    return this.http.put<Villain[]>(`${this.apiUrl}villains`, villainData);
+  putVillains(villainData: Villain[]): Observable<any> {
+
+    const villainJSON = {
+      'key': 'villains',
+      'data': villainData
+    }
+    console.log(`${this.apiUrl}villains/`);
+    return this.http.put(`${this.apiUrl}villains/`, villainJSON);
   }
 
-  putLocations(locationData: Location[]): Observable<Location[]> {
-    return this.http.put<Location[]>(`${this.apiUrl}locations`, locationData);
+  putLocations(locationData: Location[]): Observable<any> {
+
+    const locationJSON = {
+      'key': 'villains',
+      'data': locationData
+    }
+    
+    return this.http.put<Location[]>(`${this.apiUrl}locations/`, locationJSON);
   }
 }
