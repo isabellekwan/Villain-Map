@@ -1,10 +1,10 @@
 <table class="table table-striped">
     <thead>
       <tr>
-        <th scope="col">Location</th>
-        <th scope="col">Villain's Name</th>
-        <th scope="col">Time Reported</th>
-        <th scope="col">Status</th>
+        <th scope="col" (click)="sortTable('location')">Location</th>
+        <th scope="col" (click)="sortTable('name')">Villain's Name</th>
+        <th scope="col" (click)="sortTable('time')">Time Reported</th>
+        <th scope="col" (click)="sortTable('status')">Status</th>
         <th scope="col"></th>
         <th scope="col"></th>
       </tr>
@@ -13,7 +13,7 @@
       <tr *ngFor="let v of villains" [class.closed]="v.status === 'closed'">
         <td> {{ v.location }}</td>
         <td> {{ v.name }}</td>
-        <td> {{ v.time | date: 'shortTime'}}</td>
+        <td> {{ v.time | date: 'medium'}}</td>
         <td> {{ v.status === 'closed' ? 'Closed' : 'Open' }}</td>
         <td><a class="btn"[routerLink]="['/villain', v.id]">More Info</a></td>
         <td><button class="btn" (click)="deleteVillain(v.id.toString())">Delete</button></td>

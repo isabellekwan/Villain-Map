@@ -52,4 +52,8 @@ export class VillainService {
     //update villain-list on storage
     return this.villains
    }
+
+   getVillainById(id:number) {
+    
+   }
 }

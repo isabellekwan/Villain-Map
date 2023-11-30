@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { LocationService } from '../location.service';
+import { StorageService } from '../storage.service';
+import { Router } from '@angular/router';
 import * as L from 'leaflet';
 
 import { icon, Marker } from 'leaflet';
@@ -23,14 +26,18 @@ Marker.prototype.options.icon = iconDefault;
   templateUrl: './location.component.html',
   styleUrls: ['./location.component.css']
 })
-export class LocationComponent {
-  private map!: L.Map
+export class LocationComponent implements OnInit {
+  private map!: L.Map;
+  private marker: any;
+  newLocationName: string = '';
+  newLongitude: number = 0;
+  newLatitude: number = 0;
 
-  constructor(){}
+  constructor(private locationService: LocationService, private StorageService: StorageService, private Router: Router ){}
 
   ngOnInit(): void {
-    this.showMap()
-    this.putLabels()
+    this.showMap();
+    this.showClick();
   }
 
   showMap() {
@@ -45,10 +52,40 @@ export class LocationComponent {
 
   showClick() {
     this.map.on ('click', (e) => {
-      alert("Lat,Lon: " + e.latlng.lat + ", " + e.latlng.lng)
+      this.onMapClick(e,this.map);
     })
   }
 
-  putLabels() {
+  onMapClick(e: any, map: any): void {
+    if (this.marker) {
+      this.map.removeLayer(this.marker); // Remove existing marker
+    }
+    // Get latitude and longitude from the clicked location
+    this.newLatitude = e.latlng.lat;
+    this.newLongitude = e.latlng.lng;
+
+    // Place a marker at the clicked location
+    this.marker = L.marker([this.newLatitude, this.newLongitude]).addTo(this.map);
+  }
+
+  addNewLocation(): void {
+    // if no marker is clicked
+
+    // else if name already exists
+
+    // else
+    const newLocation = this.locationService.createNewLocation(
+      this.newLocationName,
+      this.newLongitude,
+      this.newLatitude,
+    );
+
+    this.locationService.add(newLocation);
+    this.StorageService.putLocations(this.locationService.get())
+      .subscribe((response) => {
+        console.log('Locations added and server updated:', response);
+      });
+
+    this.Router.navigate(['villain/report']);
   }
 }

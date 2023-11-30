@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
+import { Location } from '../models/location.model';
+import { LocationService } from '../location.service';
+import { StorageService } from '../storage.service';
 import * as L from 'leaflet';
 
 import { icon, Marker } from 'leaflet';
@@ -24,15 +27,16 @@ Marker.prototype.options.icon = iconDefault;
   styleUrls: ['./map.component.css']
 })
 
-export class MapComponent implements OnInit {
+export class MapComponent implements AfterViewInit {
   private map!: L.Map
 
-  constructor(){}
+  constructor(private locationService: LocationService, private StorageService: StorageService){}
 
-  ngOnInit(): void {
+  ngAfterViewInit(): void {
+    const locations: Location[] = this.locationService.get();
+
     this.showMap()
-    // this.putLabels()
-
+    this.putLabels(locations)
   }
 
   showMap() {
@@ -45,14 +49,18 @@ export class MapComponent implements OnInit {
     }).addTo(this.map);
   }
 
-  // putLabels() {
-  //   L.marker([49.2276, -123.0076]).addTo(this.map)
-  // 		.bindPopup("<b>Metortown</b><br />2 nuisance reports")
-  //   L.marker([49.300054, -123.148155]).addTo(this.map)
-  //   	.bindPopup("<b>Stanley Park</b><br />5 nuisance reports")
-  //   L.marker([49.2781, -122.9199]).addTo(this.map)
-  //   	.bindPopup("<b>SFU Burnaby</b><br />2 nuisance reports")
-
-  // }
-
+  putLabels(locations: Location[]) {
+    setTimeout(() => {
+      if (locations && locations.length > 0) {
+        locations.forEach((location: Location) => {
+          if(location.count > 0) {
+            const marker = L.marker([location.latitude, location.longitude]).addTo(this.map);
+          marker.bindPopup(`<b>${location.name}</b><br />${location.count} nuisance reports`).openPopup();
+          } 
+        });
+      }
+    }, 500); 
+  }
 }
+
+

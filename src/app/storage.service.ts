@@ -19,7 +19,7 @@ export class StorageService {
   }
 
   getLocations(): Observable<any> {
-    const locations : Observable<Object> = this.http.get<Object>(`${this.apiUrl}locations/`);
+    const locations = this.http.get<Object>(`${this.apiUrl}locations/`);
     return locations;
   }
 
@@ -36,7 +36,7 @@ export class StorageService {
   putLocations(locationData: Location[]): Observable<any> {
 
     const locationJSON = {
-      'key': 'villains',
+      'key': 'locations',
       'data': locationData
     }
     

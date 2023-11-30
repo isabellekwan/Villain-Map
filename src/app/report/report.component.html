@@ -42,8 +42,9 @@
             >
             <label for="locationSelect">Select or Add Location:</label>
             <select 
-            name="locationSelect"
+            name="location"
             id="locationSelect"
+            formControlName="location"
             (change)="onLocationSelected($event)"
             >
             <option value="" disabled selected>Select a location or add a new one</option>
@@ -55,32 +56,6 @@
             <option value="new">Add New Location</option>
             </select>
 
-            <div *ngIf="isNewLocationSelected">
-            
-            <label for="newLocationName">New Location Name: </label>
-            <input 
-                type="text"
-                name="newLocationName"
-                id="newLocationName"
-                placeholder="Enter new location name"
-            ><br>
-
-            <label for="newLatitude">New Latitude: </label>
-            <input 
-                type="number"
-                name="newLatitude"
-                id="newLatitude"
-                placeholder="Enter new latitude"
-            ><br>
-
-            <label for="newLongitude">New Longitude: </label>
-            <input 
-                type="number"
-                name="newLongitude"
-                id="newLongitude"
-                placeholder="Enter new longitude"
-            >
-            </div>
             <label for="extraDetails">Extra Details:</label>
             <textarea 
             name="extraDetails"
