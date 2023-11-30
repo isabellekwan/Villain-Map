@@ -1,15 +1,10 @@
-<app-villain
-    *ngFor="let v of villains"
-    [villain]="v"
-    (delete)="deleteVillain($event)"
-></app-villain>
 <table class="table table-striped">
     <thead>
       <tr>
         <th scope="col">Location</th>
         <th scope="col">Villain's Name</th>
         <th scope="col">Time Reported</th>
-        <th scope="col"></th>
+        <th scope="col">Status</th>
         <th scope="col"></th>
         <th scope="col"></th>
       </tr>

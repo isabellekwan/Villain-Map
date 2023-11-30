@@ -1,0 +1,61 @@
+html, body {
+    height: 100%;
+    margin: 0;
+}
+
+#mapid {
+    border: 0.5vw solid rgba(0, 0, 0, 0.875);
+}
+
+div {
+    padding: 2vw;
+    text-align: center;
+}
+
+div.p {
+    padding: 0vw;
+    color: white;
+    font-size: 1.5vw;
+}
+
+.leaflet-container {
+
+    height: 400px;
+    width: 600px;
+
+    margin-left: auto;
+    margin-right: auto;
+
+    max-width: 60%;
+    max-height: 100%;
+}
+
+h1 {
+    font-family: 'BadaFont', sans-serif; 
+    font-size: 6vw;
+    letter-spacing: 0.35vw;
+    color: white;
+    -webkit-text-stroke: 0.225vw black;
+    text-align: center;
+}
+
+.btn {
+    margin-right: 0.5vw;
+    background-color: orangered;
+    border: 0px;
+}
+
+h2 {
+    font-family: 'BadaFont', sans-serif; 
+    font-size: 3vw;
+    color: white;
+    letter-spacing:0.15vw;
+    -webkit-text-stroke: 0.15vw black;
+    text-align: left;
+}
+
+input {
+    width: 20vw;
+    margin-left: 2vw;
+    margin-right: 2vw;
+}

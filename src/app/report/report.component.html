@@ -1,4 +1,6 @@
 <body>
+    <a class = 'btn btn-primary' routerLink="/home">Back</a>
+    <div class = "body">
     <form
         [formGroup]="form"
         (ngSubmit)="onSubmit(form.value)"
@@ -94,6 +96,7 @@
                 SAVE
             </button>
         </fieldset>
-        
+        <br><br>
     </form>
+</div>
 </body>

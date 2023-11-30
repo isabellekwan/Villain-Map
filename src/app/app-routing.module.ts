@@ -7,10 +7,11 @@ import { ReportComponent } from './report/report.component';
 import { VillainComponent } from './villain/villain.component';
 import { VillainEditComponent } from './villain-edit/villain-edit.component';
 import { HomeComponent } from './home/home.component';
+import { LocationComponent } from './location/location.component';
 
 const appRoutes:Routes = [
-  { path: '', pathMatch: 'full', redirectTo: '/home' },
   { path: 'home', component: HomeComponent },
+  { path: 'newlocation', component: LocationComponent},
   { path: 'villain', component: VillainListComponent },
   { path: 'villain/report', component: ReportComponent },
   { path: 'villain/:id', component: VillainComponent }

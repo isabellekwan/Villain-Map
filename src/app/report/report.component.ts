@@ -65,8 +65,7 @@ export class ReportComponent {
       const selectedValue = value.target.value;
   
       if (selectedValue === 'new') {
-        this.isNewLocationSelected = true;
-        // make new location
+        this.router.navigate(['/newlocation'])
 
       } else {
         // Handle selection of a previous location

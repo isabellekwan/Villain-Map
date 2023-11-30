@@ -15,6 +15,7 @@ import { VillainService } from './villain.service';
 import { VillainEditComponent } from './villain-edit/villain-edit.component';
 import { HomeComponent } from './home/home.component';
 import { StorageService } from './storage.service';
+import { LocationComponent } from './location/location.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { StorageService } from './storage.service';
     VillainComponent,
     VillainListComponent,
     VillainEditComponent,
-    HomeComponent
+    HomeComponent,
+    LocationComponent
   ],
   imports: [
     BrowserModule,

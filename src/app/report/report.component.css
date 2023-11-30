@@ -1,7 +1,11 @@
-body {
+div.body {
     padding-left: 20vw;
     padding-right: 20vw;
-    padding-top: 5vw;
+}
+
+body {
+    padding-top: 2vw;
+    padding-left: 2vw;
 }
 
 legend {
@@ -18,4 +22,14 @@ label {
     font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
     color: white;
     -webkit-text-stroke: .075vw black;
+}
+
+button {
+    margin-bottom: 2vw;
+}
+
+.btn {
+    margin-top: 1vw;
+    background-color: orangered;
+    border: 0px;
 }
