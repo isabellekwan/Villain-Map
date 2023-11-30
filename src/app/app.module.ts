@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -13,6 +14,7 @@ import { VillainListComponent } from './villain-list/villain-list.component';
 import { VillainService } from './villain.service';
 import { VillainEditComponent } from './villain-edit/villain-edit.component';
 import { HomeComponent } from './home/home.component';
+import { StorageService } from './storage.service';
 
 @NgModule({
   declarations: [
@@ -30,11 +32,12 @@ import { HomeComponent } from './home/home.component';
     FormsModule,
     ReactiveFormsModule,
     RouterModule.forRoot([
-      { path: '', pathMatch: 'full', redirectTo: 'home' },
+      { path: '', pathMatch: 'full', redirectTo: '/home' },
       { path: 'home', component: HomeComponent },
-    ])
+    ]),
+    HttpClientModule
   ],
-  providers: [VillainService],
+  providers: [VillainService, StorageService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

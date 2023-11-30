@@ -1,23 +1,49 @@
 import { Injectable } from '@angular/core';
 import { Villain } from './models/villain.model';
+import { StorageService } from "./storage.service";
+import { tap, catchError } from 'rxjs/operators';
+import { of } from "rxjs";
 
 @Injectable({
   providedIn: 'root'
 })
+
 export class VillainService {
-  villains: Villain[]
-  constructor() {
-    this.villains = []
-   }
+  villains: Villain[] = [];
+
+  constructor(private StorageService: StorageService) {
+    //make observable into correct object type
+    this.StorageService.getVillains().pipe(
+    tap((storedVillains) => {
+      if (storedVillains) {
+        storedVillains.data.forEach((villain: Villain) => {
+          this.villains.push(villain);
+        });
+        console.log("Loaded villains from storage: ", this.villains);
+        console.log(typeof(this.villains))
+      }
+    }),
+    catchError((error) => {
+      console.log("Error loading villains from storage: ", error);
+      return of(null);
+    })
+  ).subscribe();
+}
 
    get(): Villain[] {
-    return this.villains
+    return this.villains;
    }
 
-   add(newVillain:any){
-    newVillain.added_on = (new Date()).getTime()
-    this.villains.push(newVillain)
-    //update villain-list on storage
+   add(newVillain: Villain){
+    this.villains.push(newVillain);
+
+    this.StorageService.putVillains(this.villains).pipe(
+      tap(() => console.log("Saved villains to storage")),
+      catchError((error) => {
+        console.log("Error saving...", error);
+        return of(null);
+      })
+    ).subscribe()
     console.log(this.villains)
    }
 
