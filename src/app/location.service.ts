@@ -50,4 +50,25 @@ export class LocationService {
     console.log(this.locations)
    }
 
+   updateLocationCount(locationName: string, change: number): void {
+    const locationToUpdate = this.locations.find(l => l.name === locationName);
+    console.log("Location to update:" + locationToUpdate)
+    if (locationToUpdate) {
+      if (locationToUpdate.count === 1 && change === -1) {
+        // Remove location if there's only one instance and it's being decremented
+        this.locations = this.locations.filter(l => l.name !== locationName);
+      } else {
+        locationToUpdate.count += change;
+      }
+    }
+    this.StorageService.putLocations(this.locations).pipe(
+      tap(() => console.log("Saved locations to storage")),
+      catchError((error) => {
+        console.log("Error saving...", error);
+        return of(null);
+      })
+    ).subscribe()
+    console.log(this.locations)
+   }
 }
+

@@ -42,7 +42,7 @@ export class ReportComponent {
   onSubmit(form: any) {
     if (this.form.valid) {
       const formData = this.form.value;
-      const selectedLocationName = formData.location;
+      const selectedLocationName: string = formData.location;
 
       console.log(formData);
       console.log("THE FORM LOCATION: ", formData.location)
@@ -51,7 +51,7 @@ export class ReportComponent {
         name: formData.name,
         reportName: formData.reportname,
         reportNumber: formData.reportnumber,
-        location: formData.location,
+        location: selectedLocationName,
         time: new Date(),
         imageUrl: formData.imageUrl, //image not found picture
         extraDetails: formData.extraDetails,

@@ -16,7 +16,11 @@ export class VillainListComponent implements OnInit{
   sortColumn: string = '';
   sortDirection: string = 'asc';
 
-  constructor(private http: HttpClient, private villainService:VillainService, private storageService: StorageService){
+  constructor(
+    private http: HttpClient, 
+    private villainService:VillainService, 
+    private storageService: StorageService,
+    private locationService: LocationService){
     this.villains = villainService.get();
   }
 
@@ -37,7 +41,13 @@ export class VillainListComponent implements OnInit{
       });
   }
 
-  deleteVillain(villainId: string) {
+  deleteVillain(villainName: string) {
+    const villain = this.villainService.getVillainByName(villainName); 
+    this.villainService.delete(villainName);
+    this.storageService.putVillains(this.villainService.get())
+      .subscribe((response) => {
+        console.log('Villain deleted and server updated', response)
+      })
     const password: string | null = prompt('Enter password:'); // Prompt for password
 
     // // Check if the provided password matches the stored hash for deletion
