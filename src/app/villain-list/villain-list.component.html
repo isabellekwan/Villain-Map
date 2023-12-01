@@ -15,8 +15,8 @@
         <td> {{ v.name }}</td>
         <td> {{ v.time | date: 'medium'}}</td>
         <td> {{ v.status === 'closed' ? 'Closed' : 'Open' }}</td>
-        <td><a class="btn"[routerLink]="['/villain', v.id]">More Info</a></td>
-        <td><button class="btn" (click)="deleteVillain(v.id.toString())">Delete</button></td>
+        <td><a class="btn"[routerLink]="['/villain', v.name]">More Info</a></td>
+        <td><button class="btn" (click)="deleteVillain(v.name)">Delete</button></td>
       </tr>
     </tbody>
   </table>

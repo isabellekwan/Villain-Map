@@ -1,13 +1,13 @@
-<div>
-    <img *ngIf="villain?.imageUrl" [src]="villain.imageUrl" alt="Villain Image">
+<div *ngIf="villain">
+    <img [src]="villain.imageUrl || 'https://static.vecteezy.com/system/resources/previews/005/337/799/non_2x/icon-image-not-found-free-vector.jpg'" alt="Villain Image">
     <p>
         Baddie's Name: {{ villain.name }} <br>
         Location: {{ villain.location }} <br>
-        Reported By: {{villain.reportname}} ( {{villain.reportnumber}} ) <br>
-        Added on: <span [textContent]="villain.added_on | date"></span> <br>
-        Status: <span *ngIf="villain.instructor; then ins else notins"></span> <br>
-        <ng-template #ins>&check;</ng-template>
-        <ng-template #notins><b>X</b></ng-template>
+        Reported By: {{villain.reportName}} ( {{villain.reportNumber}} ) <br>
+        Added on: <span [textContent]="villain.time | date: 'medium'"></span> <br>
+        Status: <span *ngIf="villain?.status === 'open' ; then ins else notins"></span> <br>
+        <ng-template #ins>Open</ng-template>
+        <ng-template #notins><b>Resolved</b></ng-template>
         Extra Info: {{ villain.extraDetails }}
     </p>
     <a class = 'btn btn-primary' routerLink="/home">Back</a>

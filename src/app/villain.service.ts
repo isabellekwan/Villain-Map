@@ -48,12 +48,12 @@ export class VillainService {
    }
 
    delete(del_villain:string){
-    this.villains = this.villains.filter(v => v.id.toString() !== del_villain);
+    this.villains = this.villains.filter(v => v.time.toString() !== del_villain);
     //update villain-list on storage
     return this.villains
    }
 
-   getVillainById(id:number) {
-    
+   getVillainByName(name: string) {
+    return this.villains.find(villain => villain.name === name);
    }
 }

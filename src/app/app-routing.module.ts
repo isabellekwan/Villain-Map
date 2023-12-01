@@ -14,7 +14,7 @@ const appRoutes:Routes = [
   { path: 'newlocation', component: LocationComponent},
   { path: 'villain', component: VillainListComponent },
   { path: 'villain/report', component: ReportComponent },
-  { path: 'villain/:id', component: VillainComponent }
+  { path: 'villain/:name', component: VillainComponent }
 ]
 
 @NgModule({

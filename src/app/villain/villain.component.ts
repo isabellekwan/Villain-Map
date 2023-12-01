@@ -1,26 +1,35 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { VillainService } from '../villain.service';
 import { Router } from '@angular/router';
+import { Villain } from '../models/villain.model';
 
 @Component({
   selector: 'app-villain',
   templateUrl: './villain.component.html',
   styleUrls: ['./villain.component.css']
 })
-export class VillainComponent {
-  @Input() villain:any
-  @Output() delete = new EventEmitter()
+export class VillainComponent implements OnInit {
+  villain: Villain | undefined;
 
-  constructor(private router: Router){
-  }
-  
-  onDelete(evt:any,vil_to_be_deleted:string) {
-    evt['delete_villain'] = vil_to_be_deleted
-    //console.log(evt)
-    // send it to the parent component
-    this.delete.emit(evt)
-  }
+  constructor(
+    private route: ActivatedRoute,
+    private villainService: VillainService,
+    private router: Router
+  ) {}
 
-  onEdit(){
-    this.router.navigate(['/person',this.villain.name])
-  }
+  ngOnInit(): void {
+    this.route.paramMap.subscribe(params => {
+      // Fetch the name parameter from the route
+      const villainName = params.get('name');
+      if (villainName) {
+        // Use the VillainService to get the specific villain by name
+        this.villain = this.villainService.getVillainByName(villainName);
+      }
+    });
+
+  // onEdit(){
+  //   this.router.navigate(['/person',this.villain.name])
+  // }
+}
 }

@@ -48,7 +48,6 @@ export class ReportComponent {
       console.log("THE FORM LOCATION: ", formData.location)
   
       const newVillain: Villain = {
-        id: Villain.num,
         name: formData.name,
         reportName: formData.reportname,
         reportNumber: formData.reportnumber,
@@ -58,6 +57,12 @@ export class ReportComponent {
         extraDetails: formData.extraDetails,
         status: 'open'
       };
+
+      if (!this.isNameUnique(newVillain.name)) {
+        // Show an alert or any other appropriate message when the name is not unique
+        alert('This villain has already been reported! Try another name.');
+        return;
+      }
 
       this.vs.add(newVillain); 
       this.ss.putVillains(this.vs.get())
@@ -74,6 +79,12 @@ export class ReportComponent {
   
       this.router.navigate(['/home']); // Go back to home when submitted
   }
+}
+
+isNameUnique(name: string): boolean {
+  const villains = this.vs.get();
+  // Check if the name already exists in the list of villains
+  return !villains.some(villain => villain.name === name);
 }
 
   onLocationSelected(value:any) {
