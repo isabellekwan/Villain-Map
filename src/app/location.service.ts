@@ -50,6 +50,11 @@ export class LocationService {
     console.log(this.locations)
    }
 
+   checkLocationExists(name: string): boolean {
+    const existingLocation = this.locations.find(location => location.name === name);
+    return !!existingLocation;
+  }
+  
    updateLocationCount(locationName: string, change: number): void {
     const locationToUpdate = this.locations.find(l => l.name === locationName);
     console.log("Location to update:" + locationToUpdate)

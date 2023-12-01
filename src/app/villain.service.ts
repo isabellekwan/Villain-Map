@@ -1,10 +1,12 @@
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Router } from '@angular/router';
 import { Villain } from './models/villain.model';
-import { Location } from './models/location.model';
 import { StorageService } from "./storage.service";
 import { LocationService } from './location.service';
-import { tap, catchError } from 'rxjs/operators';
-import { of } from "rxjs";
+import { tap, catchError, map } from 'rxjs/operators';
+import { Observable, of } from "rxjs";
+import { take } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -12,8 +14,14 @@ import { of } from "rxjs";
 
 export class VillainService {
   villains: Villain[] = [];
+  hashifyApiUrl = 'https://api.hashify.net/hash/md5/hex';
+  expectedHash = 'fcab0453879a2b2281bc5073e3f5fe54';
 
-  constructor(private StorageService: StorageService, private LocationService: LocationService) {
+  constructor(
+    private StorageService: StorageService, 
+    private LocationService: LocationService,
+    private http: HttpClient,
+    private router: Router) {
     //make observable into correct object type
     this.StorageService.getVillains().pipe(
     tap((storedVillains) => {
@@ -25,12 +33,12 @@ export class VillainService {
         console.log(typeof(this.villains))
       }
     }),
-    catchError((error) => {
-      console.log("Error loading villains from storage: ", error);
-      return of(null);
-    })
-  ).subscribe();
-}
+      catchError((error) => {
+        console.log("Error loading villains from storage: ", error);
+        return of(null);
+      })
+    ).subscribe();
+  }
 
    get(): Villain[] {
     return this.villains;
@@ -41,20 +49,46 @@ export class VillainService {
     this.saveVillains();
    }
 
-   delete(name:string){
-    const villainToDelete = this.villains.find(v => v.name === name);
-    if (villainToDelete) {
-      const locationName = villainToDelete.location;
-      this.villains = this.villains.filter(v => v.name !== name);
-      this.saveVillains();
-
-      this.LocationService.updateLocationCount(locationName, -1);
-    }
-
-    return this.villains;
+   verifyPassword(password: string): Observable<boolean> {
+    return this.http.get<{ Digest: string }>(`${this.hashifyApiUrl}?value=${password}`).pipe(
+      map((hashedPassword: { Digest: string }) => {
+        return hashedPassword.Digest === this.expectedHash;
+      }),
+      catchError((error) => {
+        console.log('Error verifying password: ', error);
+        return of(false);
+      }),
+      take(1) // Ensure the observable completes after emitting a single value
+    );
   }
 
-  private saveVillains() {
+   delete(name:string){
+    const password = prompt('Enter your password:');
+    if (password) {
+      this.verifyPassword(password).subscribe((passwordVerified) => {
+        if (passwordVerified) {
+          const villainToDelete = this.villains.find(v => v.name === name);
+          if (villainToDelete) {
+            const locationName = villainToDelete.location;
+            this.villains = this.villains.filter(v => v.name !== name);
+            this.saveVillains();
+
+            this.LocationService.updateLocationCount(locationName, -1);
+
+            alert('Villain deleted successfully.');
+          } else {
+            alert('Villain not found.');
+          }
+        } else {
+          alert('Password verification failed. Cannot delete.');
+        }
+      });
+    } else {
+      alert('Password not provided. Cannot delete.');
+    }
+  }
+
+  saveVillains() {
     this.StorageService.putVillains(this.villains).pipe(
       tap(() => console.log("Saved villains to storage")),
       catchError((error) => {

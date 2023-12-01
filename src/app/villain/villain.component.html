@@ -6,8 +6,14 @@
         Reported By: {{villain.reportName}} ( {{villain.reportNumber}} ) <br>
         Added on: <span [textContent]="villain.time | date: 'medium'"></span> <br>
         Status: <span *ngIf="villain?.status === 'open' ; then ins else notins"></span> <br>
-        <ng-template #ins>Open</ng-template>
-        <ng-template #notins><b>Resolved</b></ng-template>
+        <ng-template #ins>
+            Open
+            <button class="custom" (click)="changeStatus()">Change Status</button>
+        </ng-template>
+        <ng-template #notins><b>
+            Resolved
+            <button class="custom" (click)="changeStatus()">Change Status</button>
+        </b></ng-template>
         Extra Info: {{ villain.extraDetails }}
     </p>
     <a class = 'btn btn-primary' routerLink="/home">Back</a>

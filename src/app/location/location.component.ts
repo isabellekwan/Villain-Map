@@ -69,9 +69,16 @@ export class LocationComponent implements OnInit {
   }
 
   addNewLocation(): void {
-    // if no marker is clicked
+    if (!this.newLatitude || !this.newLongitude) {
+      alert('Please select a location on the map by clicking before adding.');
+      return;
+    }
 
-    // else if name already exists
+    const locationExists = this.locationService.checkLocationExists(this.newLocationName);
+    if (locationExists) {
+      alert('Location name already exists. Please choose a different name.');
+      return;
+    }
 
     // else
     const newLocation = this.locationService.createNewLocation(

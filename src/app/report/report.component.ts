@@ -87,22 +87,12 @@ isNameUnique(name: string): boolean {
   return !villains.some(villain => villain.name === name);
 }
 
-  onLocationSelected(value:any) {
-      const selectedValue = value.target.value;
-  
-      if (selectedValue === 'new') {
-        this.router.navigate(['/newlocation'])
-      }
-      // Reset the new location fields if previously shown
-      this.resetNewLocationFields();
+onLocationSelected(value:any) {
+    const selectedValue = value.target.value;
+
+    if (selectedValue === 'new') {
+      this.router.navigate(['/newlocation'])
     }
-
-
-  resetNewLocationFields() {
-    // Reset the fields for new location entry
-    this.isNewLocationSelected = false;
-    // Reset the values of new location fields to empty or default
-    // ...
   }
 
 }
