@@ -16,6 +16,11 @@
                 placeholder="Enter your name"
                 formControlName="reportname"
             >
+            <div *ngIf="form.get('reportname')?.invalid && form.get('reportname')?.touched">
+                <div *ngIf="form.get('reportname')?.errors?.['required']">
+                  <span class="alert">Reporter's Name is required</span>
+                </div>
+              </div>
             <label for="phone">Reporter's Phone Number:</label>
             <input 
                 type="tel"
@@ -25,6 +30,12 @@
                 pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" 
                 formControlName="reportnumber"
             >
+            <div *ngIf="form.get('reportnumber')?.invalid && form.get('reportnumber')?.touched">
+                <div *ngIf="form.get('reportnumber')?.errors?.['pattern']">
+                  <span class="alert">Please enter a valid phone number (Eg. 111-222-3333)</span>
+                </div>
+              </div>
+            
             <label for="name">Villain's Name:</label>
             <input 
                 type="text"
@@ -32,6 +43,11 @@
                 placeholder="Enter the villain's name"
                 formControlName="name"
             >
+            <div *ngIf="form.get('name')?.invalid && form.get('name')?.touched">
+                <div *ngIf="form.get('name')?.errors?.['required']">
+                  <span class="alert">Villain's Name is required</span>
+                </div>
+              </div>
             <label for="imageUrl">Image URL (Optional):</label>
             <input 
             type="text"
@@ -64,6 +80,11 @@
             placeholder="Enter extra details"
             formControlName="extraDetails"
             ></textarea>
+            <div *ngIf="form.get('extraDetails')?.invalid && form.get('extraDetails')?.touched">
+                <div *ngIf="form.get('extraDetails')?.errors?.['required']">
+                  <span class="alert">Extra Details are required</span>
+                </div>
+              </div>
             <button 
                 class="btn btn-outline-primary"
                 [disabled]="!form.valid"

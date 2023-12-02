@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component } from '@angular/core';
 import { Location } from '../models/location.model';
 import { LocationService } from '../location.service';
 import { StorageService } from '../storage.service';

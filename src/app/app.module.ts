@@ -12,7 +12,6 @@ import { VillainComponent } from './villain/villain.component';
 import { VillainListComponent } from './villain-list/villain-list.component';
 
 import { VillainService } from './villain.service';
-import { VillainEditComponent } from './villain-edit/villain-edit.component';
 import { HomeComponent } from './home/home.component';
 import { StorageService } from './storage.service';
 import { LocationComponent } from './location/location.component';
@@ -24,7 +23,6 @@ import { LocationComponent } from './location/location.component';
     ReportComponent,
     VillainComponent,
     VillainListComponent,
-    VillainEditComponent,
     HomeComponent,
     LocationComponent
   ],

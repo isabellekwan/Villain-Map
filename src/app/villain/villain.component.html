@@ -1,5 +1,10 @@
 <div *ngIf="villain">
-    <img [src]="villain.imageUrl || 'https://static.vecteezy.com/system/resources/previews/005/337/799/non_2x/icon-image-not-found-free-vector.jpg'" alt="Villain Image">
+    <img *ngIf="isValidImageUrl(villain.imageUrl)"
+       [src]="villain.imageUrl"
+       alt="Villain Image">
+  <img *ngIf="!isValidImageUrl(villain.imageUrl)"
+       src="https://static.vecteezy.com/system/resources/previews/005/337/799/non_2x/icon-image-not-found-free-vector.jpg"
+       alt="Image Not Found">
     <p>
         Baddie's Name: {{ villain.name }} <br>
         Location: {{ villain.location }} <br>

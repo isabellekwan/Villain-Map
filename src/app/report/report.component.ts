@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { VillainService } from '../villain.service';
 import { StorageService } from '../storage.service';
 import { LocationService } from '../location.service'
@@ -13,30 +13,35 @@ import { Location } from "../models/location.model";
   styleUrls: ['./report.component.css']
 })
 
-export class ReportComponent {
-  form: FormGroup
+export class ReportComponent implements OnInit{
+  form!: FormGroup
 
   previousLocations: Location[];
   isNewLocationSelected: boolean = false;
 
-  constructor(private vs: VillainService, private ss: StorageService, private ls: LocationService, private router: Router){
+  constructor(
+    private formBuilder: FormBuilder,
+    private vs: VillainService,
+    private ss: StorageService,
+    private ls: LocationService,
+    private router: Router
+  ) {
     this.previousLocations = this.ls.get();
-    
-    let formControls = {
-      name: new FormControl('',[
-        Validators.required,    
-      ]),
-      reportname: new FormControl('',[
-        Validators.required,    
-      ]),
-      reportnumber: new FormControl('',[
-        Validators.required,    
-      ]),
-      imageUrl: new FormControl(),
-      location: new FormControl(),// make required when it works
-      extraDetails: new FormControl(),
-    }
-    this.form = new FormGroup(formControls)
+  }
+
+  ngOnInit() {
+    this.initializeForm();
+  }
+
+  initializeForm() {
+    this.form = this.formBuilder.group({
+      name: ['', [Validators.required]],
+      reportname: ['', [Validators.required]],
+      reportnumber: ['', [Validators.required]],
+      imageUrl: [''],
+      location: ['', [Validators.required]],
+      extraDetails: ['', [Validators.required]]
+    });
   }
 
   onSubmit(form: any) {

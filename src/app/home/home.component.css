@@ -7,6 +7,14 @@ h1 {
     text-align: center;
 }
 
+h3 {
+    text-align: center;
+    color: white;
+    -webkit-text-stroke: 0.08vw black;
+    margin-top: -0.5vw;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
+
 .btn {
     background-color: orangered;
     border: 0px;

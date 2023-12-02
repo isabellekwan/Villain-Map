@@ -74,13 +74,17 @@ export class LocationComponent implements OnInit {
       return;
     }
 
+    if (this.newLocationName === '') {
+      alert('Please enter a valid location name.');
+      return;
+    }
+
     const locationExists = this.locationService.checkLocationExists(this.newLocationName);
     if (locationExists) {
       alert('Location name already exists. Please choose a different name.');
       return;
     }
 
-    // else
     const newLocation = this.locationService.createNewLocation(
       this.newLocationName,
       this.newLongitude,
