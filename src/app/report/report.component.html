@@ -16,6 +16,7 @@
                 placeholder="Enter your name"
                 formControlName="reportname"
             >
+            <!--Code refernced from Chat GPT-->
             <div *ngIf="form.get('reportname')?.invalid && form.get('reportname')?.touched">
                 <div *ngIf="form.get('reportname')?.errors?.['required']">
                   <span class="alert">Reporter's Name is required</span>
