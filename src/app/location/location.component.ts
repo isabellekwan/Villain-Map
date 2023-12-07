@@ -48,6 +48,12 @@ export class LocationComponent implements OnInit {
     this.map.on ('click', (e) => {
       this.onMapClick(e,this.map);
     })
+
+    const tiles = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      maxZoom: 19,
+      attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> ',
+
+    }).addTo(this.map);
   }
 
   onMapClick(e: any, map: any): void {
