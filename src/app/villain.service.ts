@@ -7,6 +7,7 @@ import { LocationService } from './location.service';
 import { tap, catchError, map } from 'rxjs/operators';
 import { Observable, of } from "rxjs";
 import { take } from 'rxjs/operators';
+import { environment } from '../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -14,8 +15,8 @@ import { take } from 'rxjs/operators';
 
 export class VillainService {
   villains: Villain[] = [];
-  hashifyApiUrl = 'https://api.hashify.net/hash/md5/hex';
-  expectedHash = 'fcab0453879a2b2281bc5073e3f5fe54';
+  hashifyApiUrl = environment.hashifyApiUrl;
+  expectedHash = environment.expectedHash;
 
   constructor(
     private StorageService: StorageService, 
